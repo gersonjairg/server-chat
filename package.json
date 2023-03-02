@@ -1,7 +1,7 @@
 {
-  "name": "server-chat",
+  "name": "server-node",
   "version": "0.1.0",
-  "description": "chat app",
+  "description": "Server node",
   "main": "index.js",
   "scripts": {
     "build": "babel src --extensions \".ts, .js\" --out-dir build --copy-files",
@@ -9,9 +9,9 @@
     "start": "node build/index.js"
   },
   "keywords": [
-    "chat",
-    "telegram",
-    "server"
+    "server",
+    "node",
+    "typescript"
   ],
   "author": "Gerson Guerrero",
   "license": "MIT",
