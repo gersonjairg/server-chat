@@ -4,7 +4,7 @@ const app = express()
 const PORT = 3000
 
 app.use("/", (_req, res) => {
-  res.send("Running...")
+  res.send("Running in server chat...")
 })
 
 app.listen(PORT)
