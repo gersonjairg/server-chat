@@ -6,20 +6,24 @@ interface ResponseProps {
   message?: string
   status?: number
   details?: string
+  data?: any
 }
 
 interface Response {
   error?: string | null
-  data?: string | null
+  data?: any | null
+  message?: string
 }
 
 export const success = ({
   res,
   message = "Success",
-  status = 200
+  status = 200,
+  data
 }: ResponseProps) => {
   res.status(status).send({
-    data: message
+    message,
+    data
   } as Response)
 }
 

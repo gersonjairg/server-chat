@@ -10,7 +10,10 @@
     "noUnusedParameters": true,
     "outDir": "./build",
     "paths": {
-      "*": ["./src/*"]
+      "components/*": ["./src/components/*"],
+      "network/*": ["./src/network/*"],
+      "types/*": ["./src/types/*"],
+      "utils/*": ["./src/utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
