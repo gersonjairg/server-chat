@@ -2,11 +2,11 @@
   "name": "server-chat",
   "version": "0.1.0",
   "description": "Server chat",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "build": "babel src --extensions \".ts, .js\" --out-dir build --copy-files",
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn src/index.ts",
-    "start": "node build/index.js"
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn src/server.ts",
+    "start": "node build/server.js"
   },
   "keywords": [
     "server",
