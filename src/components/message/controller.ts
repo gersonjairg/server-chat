@@ -1,29 +1,15 @@
-import { v4 as uuidv4 } from 'uuid';
-
-import { MessageEntry } from "types/message"
-import { toNewMessageEntry } from "utils/checks"
 import store from "./store"
+import { MessageEntry, NewMessageEntry } from "types/message"
 
-export const addMessage = (body: any): Promise<MessageEntry> => {
-  return new Promise((resolve, reject) => {
-    try {
-      const newMessage = toNewMessageEntry(body)
+export const addMessage = async (
+  message: NewMessageEntry
+): Promise<MessageEntry> => {
+  const fullMessage = {
+    ...message,
+    date: new Date()
+  }
 
-      const fullMessage = {
-        ...newMessage,
-        id: uuidv4(),
-        date: new Date()
-      }
-      store.add(fullMessage)
-      return resolve(fullMessage)
-    } catch (error) {
-      return reject(error)
-    }
-  })
+  return store.add(fullMessage)
 }
 
-export const getMessages = (): Promise<MessageEntry[]> => {
-  return new Promise((resolve) => {
-    resolve(store.list())
-  })
-}
+export const getMessages = async (): Promise<MessageEntry[]> => store.list()

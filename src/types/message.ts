@@ -1,5 +1,4 @@
 export interface MessageEntry {
-  id: string | number
   user: string
   content: string
   date: Date

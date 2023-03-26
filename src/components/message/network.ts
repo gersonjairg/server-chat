@@ -1,7 +1,8 @@
 import express from "express"
 
-import response from "network/response"
 import { addMessage, getMessages } from "./controller"
+import response from "network/response"
+import { toNewMessageEntry } from "utils/checks"
 
 const router = express.Router()
 
@@ -24,7 +25,8 @@ router.get("/", async (_, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const data = await addMessage(req.body)
+    const inputMessage = toNewMessageEntry(req.body)
+    const data = await addMessage(inputMessage)
 
     response.success({
       res,
