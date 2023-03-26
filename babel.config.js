@@ -16,6 +16,7 @@ module.exports = {
       {
         alias: {
           "components": "./src/components",
+          "config": "./src/config",
           "network": "./src/network",
           "types": "./src/types",
           "utils": "./src/utils"

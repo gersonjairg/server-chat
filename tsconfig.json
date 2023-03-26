@@ -11,6 +11,7 @@
     "outDir": "./build",
     "paths": {
       "components/*": ["./src/components/*"],
+      "config/*": ["./src/config/*"],
       "network/*": ["./src/network/*"],
       "types/*": ["./src/types/*"],
       "utils/*": ["./src/utils/*"]

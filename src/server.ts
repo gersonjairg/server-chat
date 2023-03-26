@@ -1,5 +1,8 @@
+import dotenv from "dotenv"
+dotenv.config()
+
 import express from "express"
-import { connectDatabase } from "./config/database"
+import { connectDatabase } from "config/database"
 import router from "network/routes"
 
 const PORT = 3000
