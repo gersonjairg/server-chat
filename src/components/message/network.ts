@@ -1,14 +1,15 @@
 import express from "express"
 
-import { addMessage, getMessages } from "./controller"
+import { addMessage, getMessages, updateMessage } from "./controller"
 import response from "network/response"
-import { toNewMessageEntry } from "utils/checks"
 
 const router = express.Router()
 
-router.get("/", async (_, res) => {
+router.get("/", async (req, res) => {
   try {
-    const data = await getMessages()
+    const filterUser = (req.query.user as string) || null
+
+    const data = await getMessages(filterUser)
 
     response.success({
       res,
@@ -17,7 +18,7 @@ router.get("/", async (_, res) => {
   } catch (error) {
     response.error({
       res,
-      message: "Ha ocurrido un error al listar los mensajes.",
+      message: "An error occurred while listing messages",
       details: `${error}`
     })
   }
@@ -25,18 +26,35 @@ router.get("/", async (_, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const inputMessage = toNewMessageEntry(req.body)
-    const data = await addMessage(inputMessage)
+    const data = await addMessage(req.body)
 
     response.success({
       res,
       data,
-      message: `Mensaje creado correctamente!`
+      message: `Message created successfully`
     })
   } catch (error) {
     response.error({
       res,
-      message: "Ha ocurrido un error al crear el mensaje.",
+      message: "An error occurred while creating the message.",
+      details: `${error}`
+    })
+  }
+})
+
+router.patch("/:id", async (req, res) => {
+  try {
+    const data = await updateMessage(req.params.id, req.body)
+
+    response.success({
+      res,
+      data,
+      message: `Message updated successfully`
+    })
+  } catch (error) {
+    response.error({
+      res,
+      message: "An error occurred while updating the message",
       details: `${error}`
     })
   }

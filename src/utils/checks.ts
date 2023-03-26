@@ -23,3 +23,11 @@ export const toNewMessageEntry = (object: any): NewMessageEntry => {
   }
   return newEntry
 }
+
+export const toNewMessageModification = (object: any): NewMessageEntry => {
+  const newModification: NewMessageEntry = {
+    user: object.user && parseUser(object.user),
+    content: object.content && parseContent(object.content)
+  }
+  return newModification
+}
