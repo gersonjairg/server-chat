@@ -2,12 +2,12 @@ import dotenv from "dotenv"
 dotenv.config()
 
 import express from "express"
-import { connectDatabase } from "config/database"
+import db from "config/database"
 import router from "network/routes"
 
 const PORT = 3000
 const app = express()
-connectDatabase()
+db.connect()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
