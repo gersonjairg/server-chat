@@ -1,10 +1,16 @@
 import express from "express"
 
-import { addMessage, getMessages, updateMessage } from "./controller"
+import {
+  addMessage,
+  deleteMessage,
+  getMessages,
+  updateMessage
+} from "./controller"
 import response from "network/response"
 
 const router = express.Router()
 
+// List
 router.get("/", async (req, res) => {
   try {
     const filterUser = (req.query.user as string) || null
@@ -24,6 +30,7 @@ router.get("/", async (req, res) => {
   }
 })
 
+// Add
 router.post("/", async (req, res) => {
   try {
     const data = await addMessage(req.body)
@@ -42,6 +49,7 @@ router.post("/", async (req, res) => {
   }
 })
 
+// Update
 router.patch("/:id", async (req, res) => {
   try {
     const data = await updateMessage(req.params.id, req.body)
@@ -55,6 +63,25 @@ router.patch("/:id", async (req, res) => {
     response.error({
       res,
       message: "An error occurred while updating the message",
+      details: `${error}`
+    })
+  }
+})
+
+// Delete
+router.delete("/:id", async (req, res) => {
+  try {
+    const data = await deleteMessage(req.params.id)
+
+    response.success({
+      res,
+      data,
+      message: `Message deleted successfully`
+    })
+  } catch (error) {
+    response.error({
+      res,
+      message: "An error occurred while deleting the message",
       details: `${error}`
     })
   }

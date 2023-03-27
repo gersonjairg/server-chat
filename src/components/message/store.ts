@@ -2,11 +2,6 @@ import MessageModel from "./model"
 import { MessageEntry, NewMessageEntry } from "types/message"
 import { Types } from "mongoose"
 
-export const add = async (message: MessageEntry): Promise<MessageEntry> => {
-  const newMessage = new MessageModel(message)
-  return newMessage.save()
-}
-
 export const list = async (
   userFilter: string | null
 ): Promise<MessageEntry[]> => {
@@ -19,6 +14,11 @@ export const list = async (
   }
 
   return MessageModel.find(filter)
+}
+
+export const add = async (message: MessageEntry): Promise<MessageEntry> => {
+  const newMessage = new MessageModel(message)
+  return newMessage.save()
 }
 
 export const update = async (
@@ -41,5 +41,13 @@ export const update = async (
   return messageFound.save()
 }
 
-// export const find = () => {}
-// export const delete = () => {}
+export const remove = async (id: string): Promise<MessageEntry> => {
+  const searchId = new Types.ObjectId(id)
+
+  const messageFound = await MessageModel.findById(searchId)
+  if (!messageFound) {
+    throw new Error("No message found related to the provided id")
+  }
+
+  return messageFound.deleteOne()
+}
