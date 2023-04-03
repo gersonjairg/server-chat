@@ -1,6 +1,5 @@
 import { NewMessageEntry } from "types/message"
-
-const isString = (string: string): boolean => typeof string === "string"
+import { isString } from "."
 
 const parseUser = (userFromRequest: any): string => {
   if (!isString(userFromRequest)) {
