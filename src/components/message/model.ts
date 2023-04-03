@@ -1,9 +1,12 @@
-import { Schema, model } from "mongoose"
+import { Schema, model, Types } from "mongoose"
 
 import { MessageEntry } from "types/message"
 
 const messageSchema = new Schema<MessageEntry>({
-  user: String,
+  user: {
+    type: Types.ObjectId,
+    ref: "User"
+  },
   content: {
     type: String,
     required: true

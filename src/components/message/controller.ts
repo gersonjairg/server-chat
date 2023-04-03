@@ -1,6 +1,9 @@
 import * as store from "./store"
 import { MessageEntry } from "types/message"
-import { toNewMessageEntry, toNewMessageModification } from "utils/checks/message"
+import {
+  toNewMessageEntry,
+  toNewMessageModification
+} from "utils/checks/message"
 
 export const getMessages = async (
   userFilter: string | null

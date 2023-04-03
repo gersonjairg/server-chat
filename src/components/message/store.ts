@@ -13,7 +13,7 @@ export const list = async (
     }
   }
 
-  return MessageModel.find(filter)
+  return MessageModel.find(filter).populate("user").exec()
 }
 
 export const add = async (message: MessageEntry): Promise<MessageEntry> => {

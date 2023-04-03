@@ -4,4 +4,4 @@ export interface MessageEntry {
   date?: Date
 }
 
-export type NewMessageEntry = Pick<MessageEntry, 'user' | 'content'>
+export type NewMessageEntry = Pick<MessageEntry, "user" | "content">

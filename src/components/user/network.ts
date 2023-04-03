@@ -1,6 +1,6 @@
 import express from "express"
 
-import { getUsers, addUser, deleteUser } from "./controller"
+import { getUsers, addUser, deleteUser, updateUser } from "./controller"
 import response from "network/response"
 
 const router = express.Router()
@@ -37,6 +37,25 @@ router.post("/", async (req, res) => {
     response.error({
       res,
       message: "An error occurred while creating the user.",
+      details: `${error}`
+    })
+  }
+})
+
+// Update
+router.patch("/:id", async (req, res) => {
+  try {
+    const data = await updateUser(req.params.id, req.body)
+
+    response.success({
+      res,
+      data,
+      message: `User updated successfully`
+    })
+  } catch (error) {
+    response.error({
+      res,
+      message: "An error occurred while updating the user",
       details: `${error}`
     })
   }

@@ -14,3 +14,10 @@ export const toNewUserEntry = (object: any): NewUserEntry => {
   }
   return newEntry
 }
+
+export const toNewUserModification = (object: any): NewUserEntry => {
+  const newModification: NewUserEntry = {
+    name: object.name && parseName(object.name)
+  }
+  return newModification
+}
