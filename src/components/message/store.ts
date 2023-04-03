@@ -1,10 +1,10 @@
 import MessageModel from "./model"
-import { MessageEntry, NewMessageEntry } from "types/message"
+import { MessageType, NewMessageEntry } from "types/message"
 import { Types } from "mongoose"
 
 export const list = async (
   userFilter: string | null
-): Promise<MessageEntry[]> => {
+): Promise<MessageType[]> => {
   let filter = {}
 
   if (userFilter) {
@@ -16,7 +16,7 @@ export const list = async (
   return MessageModel.find(filter).populate("user").exec()
 }
 
-export const add = async (message: MessageEntry): Promise<MessageEntry> => {
+export const add = async (message: MessageType): Promise<MessageType> => {
   const newMessage = new MessageModel(message)
   return newMessage.save()
 }
@@ -24,7 +24,7 @@ export const add = async (message: MessageEntry): Promise<MessageEntry> => {
 export const update = async (
   id: string,
   message: NewMessageEntry
-): Promise<MessageEntry> => {
+): Promise<MessageType> => {
   const searchId = new Types.ObjectId(id)
   const { user, content } = message
 
@@ -41,7 +41,7 @@ export const update = async (
   return messageFound.save()
 }
 
-export const remove = async (id: string): Promise<MessageEntry> => {
+export const remove = async (id: string): Promise<MessageType> => {
   const searchId = new Types.ObjectId(id)
 
   const messageFound = await MessageModel.findById(searchId)

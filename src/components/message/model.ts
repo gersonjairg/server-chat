@@ -1,8 +1,8 @@
 import { Schema, model, Types } from "mongoose"
 
-import { MessageEntry } from "types/message"
+import { MessageType } from "types/message"
 
-const messageSchema = new Schema<MessageEntry>({
+const messageSchema = new Schema<MessageType>({
   user: {
     type: Types.ObjectId,
     ref: "User"
@@ -14,6 +14,6 @@ const messageSchema = new Schema<MessageEntry>({
   date: Date
 })
 
-const Message = model<MessageEntry>("Message", messageSchema)
+const Message = model<MessageType>("Message", messageSchema)
 
 export default Message

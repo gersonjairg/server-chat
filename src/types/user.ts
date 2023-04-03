@@ -1,5 +1,5 @@
-export interface UserEntry {
+export interface UserType {
   name?: string
 }
 
-export type NewUserEntry = Pick<UserEntry, "name">
+export type NewUserEntry = Pick<UserType, "name">

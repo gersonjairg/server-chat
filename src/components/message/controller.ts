@@ -1,5 +1,5 @@
 import * as store from "./store"
-import { MessageEntry } from "types/message"
+import { MessageType } from "types/message"
 import {
   toNewMessageEntry,
   toNewMessageModification
@@ -7,9 +7,9 @@ import {
 
 export const getMessages = async (
   userFilter: string | null
-): Promise<MessageEntry[]> => store.list(userFilter)
+): Promise<MessageType[]> => store.list(userFilter)
 
-export const addMessage = async (body: unknown): Promise<MessageEntry> => {
+export const addMessage = async (body: unknown): Promise<MessageType> => {
   const inputMessage = toNewMessageEntry(body)
 
   const fullMessage = {
@@ -23,11 +23,11 @@ export const addMessage = async (body: unknown): Promise<MessageEntry> => {
 export const updateMessage = async (
   id: string,
   body: unknown
-): Promise<MessageEntry> => {
+): Promise<MessageType> => {
   const message = toNewMessageModification(body)
 
   return store.update(id, message)
 }
 
-export const deleteMessage = async (id: string): Promise<MessageEntry> =>
+export const deleteMessage = async (id: string): Promise<MessageType> =>
   store.remove(id)

@@ -1,12 +1,12 @@
 import { Types } from "mongoose"
-import { NewUserEntry, UserEntry } from "types/user"
+import { NewUserEntry, UserType } from "types/user"
 import UserModel from "./model"
 
-export const list = async (): Promise<UserEntry[]> => {
+export const list = async (): Promise<UserType[]> => {
   return UserModel.find()
 }
 
-export const add = async (user: UserEntry): Promise<UserEntry> => {
+export const add = async (user: UserType): Promise<UserType> => {
   const newUser = new UserModel(user)
   return newUser.save()
 }
@@ -14,7 +14,7 @@ export const add = async (user: UserEntry): Promise<UserEntry> => {
 export const update = async (
   id: string,
   user: NewUserEntry
-): Promise<UserEntry> => {
+): Promise<UserType> => {
   const searchId = new Types.ObjectId(id)
   const { name } = user
 
@@ -28,7 +28,7 @@ export const update = async (
   return userFound.save()
 }
 
-export const remove = async (id: string): Promise<UserEntry> => {
+export const remove = async (id: string): Promise<UserType> => {
   const searchId = new Types.ObjectId(id)
 
   const userFound = await UserModel.findById(searchId)
